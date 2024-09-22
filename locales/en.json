@@ -1,0 +1,5 @@
+{
+    "checking_lockdown": "Hello %s, checking lockdown mode..",
+    "reject_message": "Server is currently closed, you can come back at %02d:%02d AM! (closes at %02d:%02d AM)",
+    "kick_message": "The server is now on lockdown. It will be back on at %02d:%02d AM."
+}
