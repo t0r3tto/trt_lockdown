@@ -13,8 +13,10 @@ return {
         }
     },
 
-    -- List of whitelisted player identifiers (license or license2).
+    -- List of whitelisted player identifiers has to follow the following templates.
     allowedIdentifiers = {
+        -- 'license:a84c129fbad317b8d5f6c7e18f0248abc9d5e13f'   -- Example license identifier
+        -- 'discord:728153984225673519'                         -- Example discord identifier
     },
 
     discord = {
