@@ -23,7 +23,7 @@ AddEventHandler('playerConnecting', function(name, _, deferrals)
         deferrals.update(locale('checking_lockdown', name))
 
         if not GlobalState.serverLockdown then
-            deferrals.done()
+            return deferrals.done()
         end
 
         local isWhitelisted = utils.IsWhitelisted(source)
@@ -52,9 +52,9 @@ AddStateBagChangeHandler('serverLockdown', 'global', function(_, _, value)
         lib.print.info("Closing the server..")
 
         for _, playerId in ipairs(GetPlayers()) do
-            local isWhitelisted = utils.IsWhitelisted(source)
+            local isWhitelisted = utils.IsWhitelisted(playerId)
 
-            if not isWhitelisted or config.lockdown.kickAllWhenEnabled then
+            if not isWhitelisted or config.lockdown.kickAllPlayers then
                 DropPlayer(playerId, locale('kick_message', To.hour, To.minute))
             end
         end
