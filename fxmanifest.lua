@@ -13,6 +13,8 @@ shared_script '@ox_lib/init.lua'
 
 server_script 'server/main.lua'
 
+server_only 'yes'
+
 ox_libs {
 	'cron',
 	'locale',
