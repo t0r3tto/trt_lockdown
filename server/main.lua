@@ -1,4 +1,5 @@
 local config = require 'config.server'
+local utils = require 'server.utils'
 
 if not config.lockdown.enabled then return end
 
@@ -14,18 +15,21 @@ end)
 
 AddEventHandler('playerConnecting', function(name, _, deferrals)
     local source = source
-    local license = GetPlayerIdentifierByType(source, 'license') or GetPlayerIdentifierByType(source, 'license2')
 
     deferrals.defer()
-    Wait(0) -- mandatory
+    Wait(0)
 
     CreateThread(function()
         deferrals.update(locale('checking_lockdown', name))
 
-        local isWhitelisted = lib.table.contains(config.allowedIdentifiers, license) or IsPlayerAceAllowed(source, 'lockdown.bypass')
+        if not GlobalState.serverLockdown then
+            deferrals.done()
+        end
 
-        Wait(0) -- mandatory
-        if not GlobalState.serverLockdown or isWhitelisted then
+        local isWhitelisted = utils.IsWhitelisted(source)
+
+        Wait(0)
+        if isWhitelisted then
             deferrals.done()
         else
             deferrals.done(locale('reject_message', To.hour, To.minute, From.hour, From.minute))
@@ -48,7 +52,11 @@ AddStateBagChangeHandler('serverLockdown', 'global', function(_, _, value)
         lib.print.info("Closing the server..")
 
         for _, playerId in ipairs(GetPlayers()) do
-            DropPlayer(playerId, locale('kick_message', To.hour, To.minute))
+            local isWhitelisted = utils.IsWhitelisted(source)
+
+            if not isWhitelisted then
+                DropPlayer(playerId, locale('kick_message', To.hour, To.minute))
+            end
         end
     else
         lib.print.info("Opening the server..")
