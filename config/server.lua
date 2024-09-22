@@ -2,37 +2,38 @@ return {
     lockdown = {
         enabled = true,
 
-        --[[ Should it kick all the users or only thos not whitelisted ]]
-        kickAllWhenEnabled = true,
+        -- true: Kick all players during lockdown, false: Keep whitelisted players
+        kickAllPlayers = true,
 
         from = { -- Time when the server closes (24-hour format)
             hour = 3,
-            minute = 16
+            minute = 15
         },
 
         to = { -- Time when the server opens (24-hour format)
             hour = 17,
-            minute = 0,
+            minute = 30,
         }
     },
 
     -- List of whitelisted player identifiers has to follow the following templates.
     allowedIdentifiers = {
         -- 'license:a84c129fbad317b8d5f6c7e18f0248abc9d5e13f'   -- Example license identifier
-        -- 'discord:728153984225673519'                         -- Example discord identifier
+        -- 'discord:294990611633799180'                         -- Example discord identifier
     },
 
+    -- Optional Discord role check for semi-whitelist servers (thanks @Maximus7474!)
     discord = {
-        --[[ Discord Bot Token: https://discord.com/developers/applications ]]
-        --[[ string or false ]]
+        -- Discord Bot Token: https://discord.com/developers/applications
+        -- Set to false to disable the Discord role check feature
         token = false,
 
-        --[[ Guild Identifier ]]
+        -- Guild Identifier
         guildId = '',
 
-        --[[ Guild Role Identifiers ]]
+        -- List of allowed role identifiers
         allowedRoles = {
-            ''
+            -- '892853647950618675'                             -- Example role identifier
         }
     }
 }
