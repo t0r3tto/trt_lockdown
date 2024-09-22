@@ -2,6 +2,9 @@ return {
     lockdown = {
         enabled = true,
 
+        --[[ Should it kick all the users or only thos not whitelisted ]]
+        kickAllWhenEnabled = true,
+
         from = { -- Time when the server closes (24-hour format)
             hour = 3,
             minute = 16

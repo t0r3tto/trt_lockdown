@@ -54,7 +54,7 @@ AddStateBagChangeHandler('serverLockdown', 'global', function(_, _, value)
         for _, playerId in ipairs(GetPlayers()) do
             local isWhitelisted = utils.IsWhitelisted(source)
 
-            if not isWhitelisted then
+            if not isWhitelisted or config.lockdown.kickAllWhenEnabled then
                 DropPlayer(playerId, locale('kick_message', To.hour, To.minute))
             end
         end
