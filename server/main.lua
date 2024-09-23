@@ -1,6 +1,7 @@
 local config = require 'config.server'
 local utils = require 'server.utils'
 
+if config.versionCheck then lib.versionCheck('t0r3tto/trt_lockdown') end
 if not config.lockdown.enabled then return end
 
 local From, To = config.lockdown.from, config.lockdown.to

@@ -1,4 +1,5 @@
 return {
+    versionCheck = true,
     lockdown = {
         enabled = true,
 
