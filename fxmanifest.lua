@@ -7,7 +7,7 @@ name 'trt_lockdown'
 author 't0r3tto'
 description 'Automatically lock & open server at fixed times'
 repository 'https://github.com/t0r3tto/trt_lockdown'
-version '1.0.0'
+version '1.1.0'
 
 shared_script '@ox_lib/init.lua'
 
